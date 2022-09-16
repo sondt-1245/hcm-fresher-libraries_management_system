@@ -32,7 +32,8 @@ jobs:
   - bundle _2.1.2_ exec rake db:drop db:create db:migrate
   - mkdir .sun-ci
   script:
-  - DISABLE_SPRING=1 bundle _2.1.2_ exec rspec --format html --out .sun-ci/rspec.html spec/
+  - gem install rspec_junit_formatter
+  - DISABLE_SPRING=1 bundle _2.1.2_ exec rspec --format html --out .sun-ci/rspec.html spec/  --format RspecJunitFormatter --out .sun-ci/coverage/junit.xml
   only:
     branches:
     - master
